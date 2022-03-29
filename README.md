@@ -1,4 +1,4 @@
 # MineSweeper
-A recreation of Minesweeper in Java.  
+A recreation of Minesweeper in Java.
 
-Currently planned: A timer and a high score
+Currently planned: A High Score Feature

@@ -13,15 +13,24 @@ public class MenuOptions extends JPanel {
     private int menuHeight;
 
     private JRadioButton easyDiff, mediumDiff, hardDiff, customDiff;
-    private JLabel gameState;
-    private JLabel flagsRemaining;
-    private JButton newGame = new JButton("New Game");
+    private JLabel gameStateLabel;
+    private JLabel flagsRemainingLabel;
+    private JLabel timeElapsedLabel;
+    private JButton newGameButton = new JButton("New Game");
+
+    private int time;
+    private Timer timer;
 
     public MenuOptions(int menuHeight, Board board, Game gameInstance, JFrame gui) {
         this.menuHeight = menuHeight;
         setLayout(new GridLayout(4, 1));
         setMaximumSize(new Dimension(board.getCOLS() * 32, menuHeight));
         setPreferredSize(new Dimension(board.getCOLS() * 32, menuHeight));
+        timeElapsedLabel = new JLabel("Time: " + time);
+        timer = new Timer(1000, e -> {
+            time++;
+            timeElapsedLabel.setText("Time: " + time);
+        });
         easyDiff = new JRadioButton("Easy");
         easyDiff.addActionListener(e -> gameInstance.setDifficulty(Game.Difficulty.EASY));
         mediumDiff = new JRadioButton("Medium");
@@ -40,31 +49,35 @@ public class MenuOptions extends JPanel {
         diffButtonGroup.add(hardDiff);
         diffButtonGroup.add(customDiff);
 
-        gameState = new JLabel("Playing!");
-        flagsRemaining = new JLabel("Flags remaining: " + gameInstance.getRemainingFlags());
-        newGame.addActionListener(e -> {
+        gameStateLabel = new JLabel("Playing!");
+        flagsRemainingLabel = new JLabel("Mines: " + gameInstance.getRemainingFlags());
+        newGameButton.addActionListener(e -> {
             gui.dispose();
             gameInstance.initializeGame();
         });
-        add(gameState);
-        add(newGame);
+        add(gameStateLabel);
+        add(newGameButton);
         add(easyDiff);
         add(mediumDiff);
         add(hardDiff);
         add(customDiff);
-        add(flagsRemaining);
+        add(flagsRemainingLabel);
+        add(timeElapsedLabel);
+        timer.start();
     }
 
     public void setLoss() {
-        gameState.setText("You lose!");
+        gameStateLabel.setText("You lose!");
+        timer.stop();
     }
 
     public void setWin() {
-        gameState.setText("You win!");
+        gameStateLabel.setText("You win!");
+        timer.stop();
     }
 
     public void updateFlags(int flags) {
-        flagsRemaining.setText("Mines: " + flags);
+        flagsRemainingLabel.setText("Mines: " + flags);
     }
 
     private void setDefaultDifficultyButton(Game gameInstance) {
