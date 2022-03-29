@@ -51,19 +51,7 @@ public class SafeCell extends Cell {
         }
     }
 
-    public List<Cell> getNeighbors() {
-        List<Cell> neighbors = new LinkedList<>();
-        for (int i = -1; i <= 1; i++) {
-            for (int j = -1; j <= 1; j++) {
-                if (i == 0 && j == 0) {
-                    continue;
-                }
-                Cell neighborCell = getGame().getBoard().getCell(getCoords().getX() + i, getCoords().getY() + j);
-                if (neighborCell != null) {
-                    neighbors.add(neighborCell);
-                }
-            }
-        }
-        return neighbors;
+    public int getValue() {
+        return value;
     }
 }

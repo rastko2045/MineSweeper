@@ -33,6 +33,23 @@ public class MouseHandler implements MouseListener {
                     gameInstance.setRemainingFlags(gameInstance.getRemainingFlags() + 1);
                 }
             }
+            if (e.getButton() == MouseEvent.BUTTON2) {
+                if (cell.isRevealed() && cell instanceof SafeCell safeCell) {
+                    int flaggedNeighbors = 0;
+                    for (Cell neighbor : cell.getNeighbors()) {
+                        if (neighbor.isFlagged()) {
+                            flaggedNeighbors++;
+                        }
+                    }
+                    if (flaggedNeighbors == safeCell.getValue()) {
+                        for (Cell neighbor : cell.getNeighbors()) {
+                            if (!neighbor.isFlagged()) {
+                                neighbor.reveal();
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
