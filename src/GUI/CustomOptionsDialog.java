@@ -17,7 +17,7 @@ public class CustomOptionsDialog extends JDialog {
         setLayout(new GridLayout(0, 2));
         SpinnerNumberModel rowsModel = new SpinnerNumberModel(gameInstance.getBoard().getROWS(), 6, 20, 1);
         SpinnerNumberModel columnsModel = new SpinnerNumberModel(gameInstance.getBoard().getCOLS(), 7, 40, 1);
-        SpinnerNumberModel minesModel = new SpinnerNumberModel(gameInstance.getBoard().getCOLS(), 0, 35 * 20, 1);
+        SpinnerNumberModel minesModel = new SpinnerNumberModel(gameInstance.getBoard().getCOLS(), 0, 40 * 20, 1);
         rowsField = new JSpinner(rowsModel);
         rowsLabel = new JLabel("Rows:");
         columnsField = new JSpinner(columnsModel);
@@ -30,9 +30,13 @@ public class CustomOptionsDialog extends JDialog {
         cancelButton.addActionListener(e -> dispose());
         setButton.addActionListener(e -> {
             dispose();
-            gameInstance.setCustomGame((Integer) rowsField.getValue(),
-                    (Integer) columnsField.getValue(),
-                    (Integer) minesField.getValue());
+            int minesNumber = (Integer) minesField.getValue();
+            int rows = (Integer) rowsField.getValue();
+            int cols = (Integer) columnsField.getValue();
+            if (minesNumber > rows * cols) {
+                minesNumber = rows * cols;
+            }
+            gameInstance.setCustomGame(rows, cols, minesNumber);
         });
         add(rowsLabel);
         add(rowsField);
