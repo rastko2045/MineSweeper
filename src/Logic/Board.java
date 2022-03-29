@@ -1,3 +1,5 @@
+package Logic;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -37,6 +39,7 @@ public class Board {
     }
 
     private List<Coordinates> generateBombCoordinates() {
+        Coordinates.resetGeneration();
         List<Coordinates> bombCoords = new LinkedList<>();
         for (int i = 0; i < NUMBER_OF_BOMBS; i++) {
             bombCoords.add(Coordinates.generateCoordinates(ROWS, COLS));
@@ -47,7 +50,7 @@ public class Board {
     private void generateBombs() {
         List<Coordinates> bombCoords = generateBombCoordinates();
         for (Coordinates coords : bombCoords) {
-            cells[coords.getX()][coords.getY()] = new BombCell(game, coords);
+            cells[coords.getX()][coords.getY()] = new MineCell(game, coords);
         }
     }
 

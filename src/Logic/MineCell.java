@@ -1,6 +1,8 @@
-public class BombCell extends Cell {
+package Logic;
 
-    protected BombCell(Game game, Coordinates coords) {
+public class MineCell extends Cell {
+
+    protected MineCell(Game game, Coordinates coords) {
         super(game, coords);
     }
 
@@ -9,7 +11,7 @@ public class BombCell extends Cell {
         if (isRevealed()) {
             return;
         }
-        if (getGame().isLost()) {
+        if (getGame().isLost() || getGame().isWon()) {
             updateImage("bomb_cell.png");
         } else {
             getGame().setIsLost(true);

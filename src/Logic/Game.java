@@ -1,3 +1,7 @@
+package Logic;
+
+import GUI.GUI;
+
 public class Game {
 
     private final int EASY_DIFF_ROWS = 9;
@@ -10,7 +14,7 @@ public class Game {
     private final int HARD_DIFF_COLS = 30;
     private final int HARD_DIFF_MINES = 99;
 
-    private int bombAmount;
+    private int minesAmount;
     private Board board;
     private int rows, cols;
     private Difficulty difficulty;
@@ -18,10 +22,11 @@ public class Game {
     private int remainingSafeCells;
     private int remainingFlags;
     private boolean isLost;
+    private boolean isWon;
 
 
     public static void main(String[] args) {
-        Game game = new Game();
+        new Game();
     }
 
     public Game() {
@@ -33,34 +38,33 @@ public class Game {
          */
     public void initializeGame() {
         setIsLost(false);
+        isWon = false;
         if (difficulty == null) {
             difficulty = Difficulty.EASY;
         }
         if (difficulty == Difficulty.EASY) {
-            bombAmount = EASY_DIFF_MINES;
+            minesAmount = EASY_DIFF_MINES;
             rows = EASY_DIFF_ROWS;
             cols = EASY_DIFF_COLS;
         }
         if (difficulty == Difficulty.MEDIUM) {
-            bombAmount = MID_DIFF_MINES;
+            minesAmount = MID_DIFF_MINES;
             rows = MID_DIFF_ROWS;
             cols = MID_DIFF_COLS;
         }
         if (difficulty == Difficulty.HARD) {
-            bombAmount = HARD_DIFF_MINES;
+            minesAmount = HARD_DIFF_MINES;
             rows = HARD_DIFF_ROWS;
             cols = HARD_DIFF_COLS;
         }
-        board = new Board(rows, cols, bombAmount, this);
-        remainingFlags = bombAmount;
-        remainingSafeCells = rows * cols - bombAmount;
+        board = new Board(rows, cols, minesAmount, this);
+        remainingFlags = minesAmount;
+        remainingSafeCells = rows * cols - minesAmount;
         board.generateBoard();
         gui = new GUI(this);
-        gui.initializeGUI();
     }
 
     public void revealAll(Cell source) {
-        gui.setLoss();
         for (int x = 0; x < rows; x++) {
             for (int y = 0; y < cols; y++) {
                 Cell cell = board.getCell(x, y);
@@ -69,11 +73,23 @@ public class Game {
                 }
             }
         }
+        if (isLost) {
+            gui.setLoss();
+        }
+    }
+
+    public void setCustomGame(int rows, int cols, int minesAmount) {
+        this.rows = rows;
+        this.cols = cols;
+        this.minesAmount = minesAmount;
+        gui.dispose();
+        initializeGame();
     }
 
     public void setWin() {
+        isWon = true;
+        revealAll(null);
         gui.setWin();
-
     }
 
     public boolean isLost() {
@@ -110,6 +126,11 @@ public class Game {
 
     public void setRemainingFlags(int remainingFlags) {
         this.remainingFlags = remainingFlags;
+        gui.updateFlags(remainingFlags);
+    }
+
+    public boolean isWon() {
+        return isWon;
     }
 
     public enum Difficulty {

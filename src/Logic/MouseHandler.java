@@ -1,3 +1,5 @@
+package Logic;
+
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -8,18 +10,12 @@ public class MouseHandler implements MouseListener {
         Component source = e.getComponent();
         if (source instanceof Cell cell) {
             Game gameInstance = cell.getGame();
-            if (gameInstance.isLost()) {
+            if (gameInstance.isLost() || gameInstance.isWon()) {
                 return;
             }
             if (e.getButton() == MouseEvent.BUTTON1) {
                 if (!cell.isRevealed() && !cell.isFlagged()) {
                     cell.reveal();
-                    if (cell instanceof BombCell) {
-                        gameInstance.setRemainingSafeCells(gameInstance.getRemainingSafeCells() - 1);
-                    }
-                    if (gameInstance.getRemainingSafeCells() == 0) {
-                        gameInstance.setWin();
-                    }
                 }
             }
             if (e.getButton() == MouseEvent.BUTTON3) {

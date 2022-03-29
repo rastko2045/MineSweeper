@@ -1,11 +1,13 @@
+package Logic;
+
 import java.util.*;
 
 public class Coordinates {
     private final int xCoord;
     private final int yCoord;
 
-    private static Random generator = new Random();
-    private static Set<Coordinates> generatedCoordinates = new HashSet<>();
+    private static final Random generator = new Random();
+    private static final Set<Coordinates> generatedCoordinates = new HashSet<>();
 
     public Coordinates(int xCoord, int yCoord) {
         this.xCoord = xCoord;
@@ -43,5 +45,9 @@ public class Coordinates {
         } while (generatedCoordinates.contains(coords));
         generatedCoordinates.add(coords);
         return coords;
+    }
+
+    public static void resetGeneration() {
+        generatedCoordinates.clear();
     }
 }
