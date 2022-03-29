@@ -23,7 +23,7 @@ public class SafeCell extends Cell {
         getGame().setRemainingSafeCells(getGame().getRemainingSafeCells() - 1);
         setRevealed(true);
         if (getGame().isLost() && this.isFlagged()) {
-            updateImage("crossed_out_bomb.png");
+            updateImage("crossed_out_mine_cell.png");
         } else {
             updateImage(value + "_cell.png");
         }

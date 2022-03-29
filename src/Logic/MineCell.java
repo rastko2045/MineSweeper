@@ -12,10 +12,10 @@ public class MineCell extends Cell {
             return;
         }
         if (getGame().isLost() || getGame().isWon()) {
-            updateImage("bomb_cell.png");
+            updateImage("mine_cell.png");
         } else {
             getGame().setIsLost(true);
-            updateImage("bomb_ignited_cell.png");
+            updateImage("mine_ignited_cell.png");
             getGame().revealAll(this);
         }
     }

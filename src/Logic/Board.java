@@ -7,7 +7,7 @@ public class Board {
 
     private final int ROWS;
     private final int COLS;
-    private final int NUMBER_OF_BOMBS;
+    private final int NUMBER_OF_MINES;
     private final Game game;
 
     private final Cell[][] cells;
@@ -15,13 +15,13 @@ public class Board {
     public Board(int rows, int cols, int mineNumber, Game game) {
         this.ROWS = rows;
         this.COLS = cols;
-        this.NUMBER_OF_BOMBS = mineNumber;
+        this.NUMBER_OF_MINES = mineNumber;
         this.game = game;
         cells = new Cell[ROWS][COLS];
     }
 
     public void generateBoard() {
-        generateBombs();
+        generateMines();
         for (int x = 0; x < ROWS; x++) {
             for (int y = 0; y < COLS; y++) {
                 if (cells[x][y] == null) {
@@ -38,18 +38,18 @@ public class Board {
         return cells[x][y];
     }
 
-    private List<Coordinates> generateBombCoordinates() {
+    private List<Coordinates> generateMineCoordinates() {
         Coordinates.resetGeneration();
-        List<Coordinates> bombCoords = new LinkedList<>();
-        for (int i = 0; i < NUMBER_OF_BOMBS; i++) {
-            bombCoords.add(Coordinates.generateCoordinates(ROWS, COLS));
+        List<Coordinates> mineCoords = new LinkedList<>();
+        for (int i = 0; i < NUMBER_OF_MINES; i++) {
+            mineCoords.add(Coordinates.generateCoordinates(ROWS, COLS));
         }
-        return bombCoords;
+        return mineCoords;
     }
 
-    private void generateBombs() {
-        List<Coordinates> bombCoords = generateBombCoordinates();
-        for (Coordinates coords : bombCoords) {
+    private void generateMines() {
+        List<Coordinates> mineCoordsList = generateMineCoordinates();
+        for (Coordinates coords : mineCoordsList) {
             cells[coords.getX()][coords.getY()] = new MineCell(game, coords);
         }
     }
