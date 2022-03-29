@@ -24,8 +24,8 @@ public class MenuOptions extends JPanel {
     public MenuOptions(int menuHeight, Board board, Game gameInstance, JFrame gui) {
         this.menuHeight = menuHeight;
         setLayout(new GridLayout(4, 1));
-        setMaximumSize(new Dimension(board.getCOLS() * 32, menuHeight));
-        setPreferredSize(new Dimension(board.getCOLS() * 32, menuHeight));
+        setMaximumSize(new Dimension(board.getCOLS() * 32, this.menuHeight));
+        setPreferredSize(new Dimension(board.getCOLS() * 32, this.menuHeight));
         timeElapsedLabel = new JLabel("Time: " + time);
         timer = new Timer(1000, e -> {
             time++;

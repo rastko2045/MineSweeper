@@ -21,7 +21,7 @@ public class GUI extends JFrame {
         this.gameInstance = gameInstance;
         board = gameInstance.getBoard();
         cellGrid = new CellGrid(board);
-        menu = new MenuOptions(MENU_HEIGHT, board, gameInstance, this);
+        menu = new MenuOptions(MENU_HEIGHT, board, this.gameInstance, this);
         setSize(board.getCOLS() * 32, board.getROWS() * 32 + 42 + MENU_HEIGHT);
         setLayout(new BoxLayout(this.getContentPane(), BoxLayout.PAGE_AXIS));
         add(menu);

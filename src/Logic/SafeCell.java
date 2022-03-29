@@ -1,8 +1,5 @@
 package Logic;
 
-import java.util.LinkedList;
-import java.util.List;
-
 public class SafeCell extends Cell {
 
     protected SafeCell(Game game, Coordinates coords) {
