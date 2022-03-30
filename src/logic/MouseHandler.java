@@ -5,8 +5,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class MouseHandler implements MouseListener {
+
     @Override
-    public void mouseClicked(MouseEvent e) {
+    public void mousePressed(MouseEvent e) {
         Component source = e.getComponent();
         if (source instanceof Cell cell) {
             Game gameInstance = cell.getGame();
@@ -54,7 +55,7 @@ public class MouseHandler implements MouseListener {
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
+    public void mouseClicked(MouseEvent e) {
 
     }
 
