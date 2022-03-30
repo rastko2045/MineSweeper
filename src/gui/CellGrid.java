@@ -1,6 +1,6 @@
-package GUI;
+package gui;
 
-import Logic.Board;
+import logic.Board;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,12 +1,12 @@
-package GUI;
+package gui;
 
-import Logic.Board;
-import Logic.Game;
+import logic.Board;
+import logic.Game;
 
 import javax.swing.*;
 import java.awt.*;
 
-import static Logic.Game.Difficulty.CUSTOM;
+import static logic.Game.Difficulty.CUSTOM;
 
 public class MenuOptions extends JPanel {
 

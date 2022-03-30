@@ -1,6 +1,6 @@
-package Logic;
+package logic;
 
-import GUI.GUI;
+import gui.GUI;
 
 public class Game {
 
