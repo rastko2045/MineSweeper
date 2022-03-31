@@ -12,7 +12,8 @@ public class CustomOptionsDialog extends JDialog {
     private JButton cancelButton, setButton;
 
 
-    public CustomOptionsDialog(Game gameInstance) {
+    public CustomOptionsDialog(Game gameInstance, GUI gui) {
+        super(gui, true);
         setTitle("Custom Options");
         setLayout(new GridLayout(0, 2));
         SpinnerNumberModel rowsModel = new SpinnerNumberModel(gameInstance.getBoard().getROWS(), 6, 20, 1);

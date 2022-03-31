@@ -21,7 +21,7 @@ public class MenuOptions extends JPanel {
     private int time;
     private Timer timer;
 
-    public MenuOptions(int menuHeight, Board board, Game gameInstance, JFrame gui) {
+    public MenuOptions(int menuHeight, Board board, Game gameInstance, GUI gui) {
         this.menuHeight = menuHeight;
         setLayout(new GridLayout(4, 1));
         setMaximumSize(new Dimension(board.getCOLS() * 32, this.menuHeight));
@@ -40,7 +40,7 @@ public class MenuOptions extends JPanel {
         customDiff = new JRadioButton("Custom");
         customDiff.addActionListener(e -> {
             gameInstance.setDifficulty(CUSTOM);
-            new CustomOptionsDialog(gameInstance);
+            new CustomOptionsDialog(gameInstance, gui);
         });
         setDefaultDifficultyButton(gameInstance);
         ButtonGroup diffButtonGroup = new ButtonGroup();
