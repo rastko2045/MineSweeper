@@ -27,6 +27,7 @@ public class GUI extends JFrame {
         add(menu);
         add(cellGrid);
         setResizable(false);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
     }
 
