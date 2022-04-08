@@ -37,6 +37,22 @@ public class SafeCell extends Cell {
         }
     }
 
+    public void chord() {
+        if (isRevealed() && !getGame().isWon() && !getGame().isLost()) {
+            int flaggedNeighbors = 0;
+            for (Cell neighbor : getNeighbors()) {
+                if (neighbor.isFlagged()) {
+                    flaggedNeighbors++;
+                }
+            }
+            if (flaggedNeighbors == getValue()) {
+                getNeighbors().stream()
+                        .filter(e -> !e.isFlagged())
+                        .forEach(Cell::reveal);
+            }
+        }
+    }
+
     public void calculateValue() {
         for (Cell cell : getNeighbors()) {
             if (cell instanceof MineCell) {

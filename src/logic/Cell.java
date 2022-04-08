@@ -2,6 +2,7 @@ package logic;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -37,6 +38,28 @@ public abstract class Cell extends JComponent {
     }
 
     public abstract void reveal();
+
+    public void leftClick() {
+        if (!isRevealed && !isFlagged && !game.isLost() && !game.isWon()) {
+            reveal();
+        }
+    }
+
+    public void rightClick() {
+        if (isRevealed || game.isLost() || game.isWon()) {
+            return;
+        }
+        if (!isFlagged) {
+            if (game.getRemainingFlags() == 0) {
+                return;
+            }
+            flag();
+            game.setRemainingFlags(game.getRemainingFlags() - 1);
+        } else {
+            unflag();
+            game.setRemainingFlags(game.getRemainingFlags() + 1);
+        }
+    }
 
     protected void updateImage(String imageName) {
         ClassLoader cl = getClass().getClassLoader();
