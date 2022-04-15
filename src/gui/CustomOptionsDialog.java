@@ -7,9 +7,9 @@ import java.awt.*;
 
 public class CustomOptionsDialog extends JDialog {
 
-    private JSpinner rowsField, columnsField, minesField;
-    private JLabel rowsLabel, columnsLabel, minesLabel;
-    private JButton cancelButton, setButton;
+    private final JSpinner rowsField, columnsField, minesField;
+    private final JLabel rowsLabel, columnsLabel, minesLabel;
+    private final JButton cancelButton, setButton;
 
 
     public CustomOptionsDialog(Game gameInstance, GUI gui) {

@@ -4,15 +4,15 @@ import gui.GUI;
 
 public class Game {
 
-    private final int EASY_DIFF_ROWS = 9;
-    private final int EASY_DIFF_COLS = 9;
-    private final int EASY_DIFF_MINES = 10;
-    private final int MID_DIFF_ROWS = 15;
-    private final int MID_DIFF_COLS = 15;
-    private final int MID_DIFF_MINES = 40;
-    private final int HARD_DIFF_ROWS = 16;
-    private final int HARD_DIFF_COLS = 30;
-    private final int HARD_DIFF_MINES = 99;
+    public static final int EASY_DIFF_ROWS = 9;
+    public static final int EASY_DIFF_COLS = 9;
+    public static final int EASY_DIFF_MINES = 10;
+    public static final int MID_DIFF_ROWS = 15;
+    public static final int MID_DIFF_COLS = 15;
+    public static final int MID_DIFF_MINES = 40;
+    public static final int HARD_DIFF_ROWS = 16;
+    public static final int HARD_DIFF_COLS = 30;
+    public static final int HARD_DIFF_MINES = 99;
 
     private int minesAmount;
     private Board board;

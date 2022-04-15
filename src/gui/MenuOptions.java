@@ -10,22 +10,21 @@ import static logic.Game.Difficulty.CUSTOM;
 
 public class MenuOptions extends JPanel {
 
-    private int menuHeight;
+    public static final int MENU_HEIGHT = 100;
 
-    private JRadioButton easyDiff, mediumDiff, hardDiff, customDiff;
-    private JLabel gameStateLabel;
-    private JLabel flagsRemainingLabel;
-    private JLabel timeElapsedLabel;
-    private JButton newGameButton = new JButton("New Game");
+    private final JRadioButton easyDiff, mediumDiff, hardDiff, customDiff;
+    private final JLabel gameStateLabel;
+    private final JLabel flagsRemainingLabel;
+    private final JLabel timeElapsedLabel;
+    private final JButton newGameButton = new JButton("New Game");
 
     private int time;
-    private Timer timer;
+    private final Timer timer;
 
-    public MenuOptions(int menuHeight, Board board, Game gameInstance, GUI gui) {
-        this.menuHeight = menuHeight;
+    public MenuOptions(Board board, Game gameInstance, GUI gui) {
         setLayout(new GridLayout(4, 1));
-        setMaximumSize(new Dimension(board.getCOLS() * 32, this.menuHeight));
-        setPreferredSize(new Dimension(board.getCOLS() * 32, this.menuHeight));
+        setMaximumSize(new Dimension(board.getCOLS() * 32, MENU_HEIGHT));
+        setPreferredSize(new Dimension(board.getCOLS() * 32, MENU_HEIGHT));
         timeElapsedLabel = new JLabel("Time: " + time);
         timer = new Timer(1000, e -> {
             time++;
