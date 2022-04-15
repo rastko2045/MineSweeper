@@ -33,9 +33,6 @@ public class Game {
         initializeGame();
     }
 
-    /*
-        Config file idea, number of rows and cols in game.
-         */
     public void initializeGame() {
         setIsLost(false);
         isWon = false;
